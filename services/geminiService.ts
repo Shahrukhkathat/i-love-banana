@@ -10,19 +10,17 @@ export async function editImage(base64ImageData: string, mimeType: string, promp
   try {
     const response = await ai.models.generateContent({
       model: 'gemini-2.5-flash-image',
-      contents: {
-        parts: [
-          {
-            inlineData: {
-              data: base64ImageData,
-              mimeType: mimeType,
-            },
+      contents: [
+        {
+          inlineData: {
+            data: base64ImageData,
+            mimeType: mimeType,
           },
-          {
-            text: prompt,
-          },
-        ],
-      },
+        },
+        {
+          text: prompt,
+        },
+      ],
       config: {
         responseModalities: [Modality.IMAGE],
       },
